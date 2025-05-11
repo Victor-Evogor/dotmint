@@ -14,25 +14,21 @@ const PixelEditor = () => {
   const {
     selectedTool,
     backgroundColor,
-    currentColor,
-    preserveBackground,
+    
     selectedColor,
     setCanvas,
     canvas,
     setStateHistory,
     setRedoStack,
     strokes,
-    setStrokes,
+    
     setBackgroundColor,
     setSelectedColor,
     drawGrid
   } = usePixelEditor();
   const [isDrawing, setIsDrawing] = useState(false);
   const [didMove, setDidMove] = useState(false);
-  const [drawingPoints, setDrawingPoints] = useState<{position: [number, number], color: string}[]>([]);
-
-  // Grid and pixel settings
-  const gridSize = 30;
+  const [, setDrawingPoints] = useState<{position: [number, number], color: string}[]>([]);
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -56,11 +52,9 @@ const PixelEditor = () => {
   }, [canvas]);
 
   // Start drawing
-  const startDrawing: MouseEventHandler<HTMLCanvasElement> = (e) => {
-    draw(e);
-  };
+  
 
-  const pickColor = (e) => {
+  const pickColor = (e: MouseEvent<HTMLCanvasElement, globalThis.MouseEvent>) => {
     if (!canvas) return;
     
     const rect = canvas.getBoundingClientRect();
@@ -173,7 +167,7 @@ const PixelEditor = () => {
     setRedoStack([]);
   };
 
-  const handleMouseDown = (e) => {
+  const handleMouseDown: MouseEventHandler<HTMLCanvasElement> = (e) => {
     setIsDrawing(true);
     setDidMove(false);
     // Clear the set of drawn pixels for new drawing session
@@ -198,13 +192,13 @@ const PixelEditor = () => {
     setIsDrawing(false);
   };
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove: MouseEventHandler<HTMLCanvasElement> = (e) => {
     if (!isDrawing) return;
     setDidMove(true);
     draw(e);
   };
 
-  const handleMouseUp = (e) => {
+  const handleMouseUp: MouseEventHandler<HTMLCanvasElement> = (e) => {
     if (isDrawing) {
       if (!didMove) {
         // Handle as a click if mouse didn't move

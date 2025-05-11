@@ -24,6 +24,8 @@ interface AppContextType {
     setCanvas: Dispatch<SetStateAction<HTMLCanvasElement | null>>;
     userDB: UserDB | null,
     setUserDB: Dispatch<SetStateAction<UserDB | null>>
+    showAuthModal: boolean;
+    setShowAuthModal: Dispatch<SetStateAction<boolean>>;
 }
 
 const AppContext = createContext<AppContextType | null>(null)

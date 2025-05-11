@@ -1,15 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Download, Rocket, X, Copy, Check } from 'lucide-react';
 import { useAuthModal, usePixelEditor } from "@/hooks";
 import { PIXEL_SIZE } from "@/constants";
 import { useUser } from "@civic/auth-web3/react"
+import { compressJsonToUrlSafe } from "@/utils/jsonCompressor"
 
 const ActionButtons = () => {
   const { canvas, preserveBackground, backgroundColor, strokes } = usePixelEditor();
   const [showMintModal, setShowMintModal] = useState(false);
   const [showPumpModal, setShowPumpModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
-  const [shareLink, /* setShareLink */] = useState(`${window.location.protocol}//${window.location.hostname}`)
+  const [shareLink, setShareLink] = useState(`${window.location.protocol}//${window.location.hostname}`)
   const [isCopied, setIsCopied] = useState(false);
   const [pumpFormData, setPumpFormData] = useState({
     name: "",
@@ -23,6 +24,13 @@ const ActionButtons = () => {
   });
   const {authStatus} = useUser()
   const {setShowAuthModal} = useAuthModal()
+
+  useEffect(() => {
+    if (showShareModal){
+      const url = compressJsonToUrlSafe(strokes)
+      setShareLink(`${window.location.protocol}//${window.location.hostname}/?data=${url}`)
+    }
+  }, [showShareModal])
 
   // Function to get the canvas as a blob
   const getCanvasBlob = async (): Promise<Blob | null> => {
@@ -111,9 +119,7 @@ const ActionButtons = () => {
   };
 
   const copyShareLink = () => {
-    // In a real app, this would generate and copy an actual share link
-    const shareUrl = `${window.location.protocol}//${window.location.hostname}`;
-    navigator.clipboard.writeText(shareUrl);
+    navigator.clipboard.writeText(shareLink);
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 2000);
   };

@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { Download, Rocket, X, Copy, Check } from 'lucide-react';
-import { usePixelEditor } from "@/hooks";
+import { useAuthModal, usePixelEditor } from "@/hooks";
 import { PIXEL_SIZE } from "@/constants";
+import { useUser } from "@civic/auth-web3/react"
 
 const ActionButtons = () => {
   const { canvas, preserveBackground, backgroundColor, strokes } = usePixelEditor();
   const [showMintModal, setShowMintModal] = useState(false);
   const [showPumpModal, setShowPumpModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
-  const [shareLink, setShareLink] = useState(`${window.location.protocol}//${window.location.hostname}`)
+  const [shareLink, /* setShareLink */] = useState(`${window.location.protocol}//${window.location.hostname}`)
   const [isCopied, setIsCopied] = useState(false);
   const [pumpFormData, setPumpFormData] = useState({
     name: "",
@@ -20,6 +21,8 @@ const ActionButtons = () => {
     amount: 0.0,
     slippage: 10,
   });
+  const {authStatus} = useUser()
+  const {setShowAuthModal} = useAuthModal()
 
   // Function to get the canvas as a blob
   const getCanvasBlob = async (): Promise<Blob | null> => {
@@ -115,6 +118,14 @@ const ActionButtons = () => {
     setTimeout(() => setIsCopied(false), 2000);
   };
 
+  const handleLaunchClick = () => {
+    if (authStatus !== "authenticated"){
+      setShowAuthModal(true);
+      return
+    }
+    setShowPumpModal(true)
+  }
+
   return (
     <>
       <button className="flex items-center justify-center gap-2 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-lg shadow-pixel transition-all" onClick={saveImage}>
@@ -136,7 +147,7 @@ const ActionButtons = () => {
       
       <button 
         className="flex items-center justify-center gap-2 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-pixel transition-all"
-        onClick={() => setShowPumpModal(true)}
+        onClick={handleLaunchClick}
       >
         <Rocket size={18} />
         Launch on pump.fun

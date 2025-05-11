@@ -24,13 +24,14 @@ import { useEffect, useState, useRef } from 'react';
 import { userHasWallet } from "@civic/auth-web3";
 import { getUserByWalletAddress, createUser } from "@/utils/firebase"
 import {Connection, PublicKey} from "@solana/web3.js"
+import { AuthModal } from '@/components/AuthModal';
 
 const App: React.FC = () => {
   const { isDarkMode, setIsDarkMode } = useDarkMode();
   const userContext = useUser();
   const { signIn, signOut, user, isLoading } = userContext;
   const {stateHistory, setStateHistory, redoStack, setRedoStack, canvas, strokes, drawGrid, setBackgroundColor} = usePixelEditor();
-  const {setUserDB, userDB} = useUserDB();
+  const {setUserDB } = useUserDB();
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
@@ -63,10 +64,12 @@ const App: React.FC = () => {
   }
 
   const copyWalletAddress = () => {
-    if (userContext.solana?.address) {
+    if (userHasWallet(userContext)){
+    if (userContext.solana.address) {
       navigator.clipboard.writeText(userContext.solana.address);
       setCopySuccess(true);
       setTimeout(() => setCopySuccess(false), 2000);
+    }
     }
   }
 
@@ -216,7 +219,7 @@ const App: React.FC = () => {
                   onClick={() => setShowUserMenu(!showUserMenu)}
                 >
                   <User size={18} /> 
-                  {truncateWalletAddress(userContext.solana?.address || '')}
+                  {truncateWalletAddress(userHasWallet(userContext)?  userContext.solana.address || '' : '')}
                 </button>
                 
                 {showUserMenu && (
@@ -229,7 +232,7 @@ const App: React.FC = () => {
                         <div className="border-b-2 border-orange-500 pb-2">
                           <p className="text-sm text-orange-500 font-bold">Wallet</p>
                           <div className="flex items-center justify-between mt-1">
-                            <p className="text-xs break-all">{userContext.solana?.address}</p>
+                            <p className="text-xs break-all">{userHasWallet(userContext) ? userContext.solana.address : ''}</p>
                             <button 
                               onClick={copyWalletAddress}
                               className={`ml-2 p-1 ${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'} rounded-md hover:bg-green-500 hover:text-white transition-colors`}
@@ -329,7 +332,6 @@ const App: React.FC = () => {
               <ActionButtons  />
             </div>
           </div>
-
           {/* Right Sidebar - AI Prompt */}
           <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} p-4 rounded-xl border-4 ${isDarkMode ? 'border-gray-700' : 'border-gray-300'} shadow-pixel`}>
             <AIPrompt  />
@@ -339,6 +341,7 @@ const App: React.FC = () => {
         <footer className="mt-12 text-center text-sm opacity-70">
           <p>© 2025 DotMint. Powered by <span className="text-green-400">Solana &amp; Civic Auth</span></p>
         </footer>
+                    <AuthModal/>
       </div>
     </div>
   );

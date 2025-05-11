@@ -100,6 +100,23 @@ function loadDataSet(
     strokes.push(point)
   }
 
+  setStateHistory((prev) => {
+    const newHistory = [
+      ...prev,
+      {
+        strokes: JSON.parse(JSON.stringify(strokes)),
+        backgroundColor,
+      },
+    ];
+    // Limit history size to prevent memory issues
+    if (newHistory.length > 30) {
+      return newHistory.slice(newHistory.length - 30);
+    }
+    return newHistory;
+  });
+  // Clear redo stack when a new action is performed
+  setRedoStack([]);
+
 }
 
   return {
@@ -129,4 +146,9 @@ function loadDataSet(
 export const useUserDB = () => {
   const {userDB, setUserDB} = useAppContext()
   return {userDB, setUserDB}
+}
+
+export const useAuthModal = () => {
+  const {showAuthModal, setShowAuthModal} = useAppContext()
+  return {showAuthModal, setShowAuthModal}
 }

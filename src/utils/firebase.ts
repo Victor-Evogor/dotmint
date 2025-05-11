@@ -7,7 +7,6 @@ import {
   getDocs,
   doc,
   updateDoc,
-  deleteDoc,
   query,
   where,
 } from 'firebase/firestore'
@@ -27,23 +26,9 @@ const db = getFirestore(app)
 
 // Function to handle CRUD operations on the 'users' collection
 const usersCollectionRef = collection(db, 'users')
-const revenue = collection(db, 'revenue')
-
-export async function createRevenue(revenueData: {
-  amount: number
-  date: Date
-  type: 'credits' | 'pump' | 'mint'
-}) {
-  try {
-    const docRef = await addDoc(revenue, revenueData)
-    console.log('Revenue created with ID: ', docRef.id)
-  } catch (error) {
-    console.error('Error creating revenue: ', error)
-  }
-}
 
 // Create a new user
-export async function createUser(userData: UserDB) {
+export async function createUser(userData: Pick<UserDB, 'walletAddress' | 'credits'>) {
   try {
     const docRef = await addDoc(usersCollectionRef, userData)
     console.log('User created with ID: ', docRef.id)
@@ -51,18 +36,6 @@ export async function createUser(userData: UserDB) {
   } catch (error) {
     console.error('Error creating user: ', error)
     throw error
-  }
-}
-
-// Read all users
-async function readUsers() {
-  try {
-    const querySnapshot = await getDocs(usersCollectionRef)
-    querySnapshot.forEach((doc) => {
-      console.log('User data: ', doc.id, ' => ', doc.data())
-    })
-  } catch (error) {
-    console.error('Error reading users: ', error)
   }
 }
 
@@ -76,17 +49,6 @@ export async function updateUser(userId: string, updatedData: Partial<UserDB>) {
     console.log('User updated with ID: ', userId)
   } catch (error) {
     console.error('Error updating user: ', error)
-  }
-}
-
-// Delete a user
-async function deleteUser(userId: string) {
-  try {
-    const userDocRef = doc(db, 'users', userId)
-    await deleteDoc(userDocRef)
-    console.log('User deleted with ID: ', userId)
-  } catch (error) {
-    console.error('Error deleting user: ', error)
   }
 }
 

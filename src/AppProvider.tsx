@@ -15,6 +15,7 @@ const AppProvider: FunctionComponent<PropsWithChildren> = ({ children }) => {
   const [redoStack, setRedoStack] = useState<StateInterface[]>([]);
   const [canvas, setCanvas] = useState<HTMLCanvasElement | null>(null);
   const [userDB, setUserDB] = useState<UserDB | null>(null)
+  const [showAuthModal, setShowAuthModal] = useState<boolean>(false);
 
   return (
     <AppContext.Provider value={{
@@ -39,7 +40,9 @@ const AppProvider: FunctionComponent<PropsWithChildren> = ({ children }) => {
       canvas,
       setCanvas,
       userDB,
-      setUserDB
+      setUserDB,
+      showAuthModal,
+      setShowAuthModal
     }}>
     <CivicAuthProvider clientId={import.meta.env.VITE_CIVIC_AUTH_CLIENT_ID}>
       {children}

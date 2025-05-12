@@ -68,13 +68,14 @@ const AIPrompt = () => {
     try {
       const userCredits = userDB.credits;
       if (userCredits < 3) {
+        
+        setShowBuyCreditsModal(true);
+      } else {
         await updateUser(userDB.id, { credits: userCredits - 3 });
         setUserDB({
           ...userDB,
           credits: userCredits - 3,
         })
-      } else {
-        setShowBuyCreditsModal(true);
       }
       const imageBuffer = await generateImageFromStableDiffusion(prompt, artStyle, complexity);
       const blob = new Blob([imageBuffer]);

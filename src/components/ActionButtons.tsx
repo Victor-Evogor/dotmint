@@ -179,7 +179,7 @@ const [errorMessage, setErrorMessage] = useState("");
       formData.append("showName", "true");
   
       // Create IPFS metadata storage
-      const metadataResponse = await fetch("https://pump.fun/api/ipfs", {
+      const metadataResponse = await fetch("http://172.236.30.83:49152/api/ipfs", {
         method: "POST",
         body: formData,
       });
@@ -191,7 +191,7 @@ const [errorMessage, setErrorMessage] = useState("");
       const metadataResponseJSON = await metadataResponse.json();
   
       // Get the create transaction
-      const response = await fetch(`https://pumpportal.fun/api/trade-local`, {
+      const response = await fetch(`http://172.236.30.83:49152/api/trade-local`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

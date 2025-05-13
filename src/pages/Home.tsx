@@ -175,6 +175,18 @@ const App: React.FC = () => {
           }
         });
         console.log(userContext.solana.address);
+      } else {
+        userContext.createWallet().then(() => {
+          if(userHasWallet(userContext)){
+            createUser({
+              credits: 3,
+              walletAddress: userContext.solana.address,
+            }).then((userDb) => {
+              setUserDB(userDb);
+            });
+          }
+        })
+        
       }
     }
   }, [isLoading]);

@@ -6,6 +6,28 @@
 
 ---
 
+## 🔧 Environment Setup
+
+1. Copy the example environment file to `.env`:
+
+```bash
+cp .example.env .env
+```
+
+2. Fill in the following environment variables in the `.env` file:
+
+```
+VITE_CIVIC_AUTH_CLIENT_ID=
+VITE_SD_API_KEY=
+VITE_SOLANA_RPC_URL=
+VITE_FIREBASE_PROJECT_ID=
+VITE_FIREBASE_DATABASE_URL=
+VITE_FIREBASE_API_KEY=
+VITE_PAYMENT_WALLET_ADDRESS=
+```
+
+Make sure to replace the placeholders with your actual credentials and configuration details.
+
 ## ✨ Features
 
 - **Pixel Editor**: Intuitive 30x30 grid canvas with drawing, erasing, filling, color picking, and undo/redo tools.

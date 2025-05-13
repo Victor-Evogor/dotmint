@@ -97,33 +97,12 @@ pnpm run preview
 
 ---
 
-## 🧪 Testing
 
-- **Unit tests** (Vitest)
-
-```bash
-pnpm run test:unit
-```
-
-- **End-to-End tests** (Cypress)
-
-```bash
-pnpm run test:e2e:dev
-```
-
-Or test against production:
-
-```bash
-pnpm run build
-pnpm run test:e2e
-```
-
----
 
 ## 🔗 Useful Links
 
 - [Solana Web3.js](https://solana-labs.github.io/solana-web3.js/)
-- [Civic Auth](https://www.civic.com/)
+- [Civic Auth](https://docs.civic.com/auth)
 - [Firebase Documentation](https://firebase.google.com/docs)
 
 ---

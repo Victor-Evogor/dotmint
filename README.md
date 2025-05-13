@@ -1,6 +1,6 @@
 # DotMint 🎨
 
-**DotMint** is a Vue.js-based creative platform where users can design **30x30 pixelated artwork**, mint it as an **NFT on Solana**, or launch their art as a token on **pump.fun**. You can draw manually on the canvas with powerful tools, or even generate pixel art automatically using **AI**!
+**DotMint** is a creative platform that allows users to design **30x30 pixelated artwork** called dotmints. Users can draw manually on a web-based canvas using powerful tools, and mint their creations as NFTs on the Solana blockchain.
 
 [🔗 GitHub Repo](https://github.com/Victor-Evogor/dotmint.git)
 
@@ -9,20 +9,18 @@
 ## ✨ Features
 
 - **Pixel Editor**: Intuitive 30x30 grid canvas with drawing, erasing, filling, color picking, and undo/redo tools.
-- **AI Art Generator**: Create pixelated art from text prompts using Stable Diffusion.
-- **NFT Minting (coming soon)**: Mint your pixel artwork as NFTs directly to the Solana blockchain.
-- **Token Launching (coming soon)**: Launch your creation as a token via pump.fun easily.
-- **Wallet Connection**: Securely connect using Phantom, Solflare, and other Solana wallets.
-- **Credit System**: Buy credits to access AI-generated art features.
+- **NFT Minting**: Mint your pixel artwork as NFTs directly to the Solana blockchain.
+- **Wallet Connection**: Securely connect using Civic Auth and Solana wallets.
+- **Credit System**: Buy credits to access premium features.
 - **Dark Mode**: Toggle between light and dark themes for a personalized experience.
 
 ---
 
 ## 🛠️ Technologies
 
-- **Frontend**: Vue 3 + TypeScript + Vite
-- **Blockchain**: Solana Web3.js + Metaplex JS
-- **AI Integration**: Stable Diffusion API
+- **Frontend**: React + TypeScript
+- **Blockchain**: Solana Web3.js
+- **Authentication**: Civic Auth
 - **Backend**: Firebase (for user management and credit tracking)
 - **Testing**: Vitest (unit tests) and Cypress (end-to-end tests)
 
@@ -33,9 +31,8 @@
 | Feature                   | Status         |
 | :------------------------ | :------------- |
 | Drawing tools & canvas    | ✅ Completed   |
-| AI-generated pixel art    | ✅ Completed   |
-| NFT minting on Solana     | 🚧 In progress |
-| Token launch via pump.fun | 🚧 In progress |
+| NFT minting on Solana     | ✅ Completed   |
+| Wallet integration        | ✅ Completed   |
 
 ---
 
@@ -51,13 +48,13 @@ cd dotmint
 ### 2. Install dependencies
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### 3. Start the development server
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 Open your browser and visit [http://localhost:5173](http://localhost:5173).
@@ -67,13 +64,13 @@ Open your browser and visit [http://localhost:5173](http://localhost:5173).
 ## 📦 Build for production
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 Preview the production build:
 
 ```bash
-npm run preview
+pnpm run preview
 ```
 
 ---
@@ -83,20 +80,20 @@ npm run preview
 - **Unit tests** (Vitest)
 
 ```bash
-npm run test:unit
+pnpm run test:unit
 ```
 
 - **End-to-End tests** (Cypress)
 
 ```bash
-npm run test:e2e:dev
+pnpm run test:e2e:dev
 ```
 
 Or test against production:
 
 ```bash
-npm run build
-npm run test:e2e
+pnpm run build
+pnpm run test:e2e
 ```
 
 ---
@@ -104,8 +101,7 @@ npm run test:e2e
 ## 🔗 Useful Links
 
 - [Solana Web3.js](https://solana-labs.github.io/solana-web3.js/)
-- [Stable Diffusion API](https://stability.ai/)
-- [pump.fun](https://pump.fun/)
+- [Civic Auth](https://www.civic.com/)
 - [Firebase Documentation](https://firebase.google.com/docs)
 
 ---

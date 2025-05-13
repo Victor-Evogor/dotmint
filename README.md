@@ -1,54 +1,115 @@
-# React + TypeScript + Vite
+# DotMint 🎨
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**DotMint** is a Vue.js-based creative platform where users can design **30x30 pixelated artwork**, mint it as an **NFT on Solana**, or launch their art as a token on **pump.fun**. You can draw manually on the canvas with powerful tools, or even generate pixel art automatically using **AI**!
 
-Currently, two official plugins are available:
+[🔗 GitHub Repo](https://github.com/Victor-Evogor/dotmint.git)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Pixel Editor**: Intuitive 30x30 grid canvas with drawing, erasing, filling, color picking, and undo/redo tools.
+- **AI Art Generator**: Create pixelated art from text prompts using Stable Diffusion.
+- **NFT Minting (coming soon)**: Mint your pixel artwork as NFTs directly to the Solana blockchain.
+- **Token Launching (coming soon)**: Launch your creation as a token via pump.fun easily.
+- **Wallet Connection**: Securely connect using Phantom, Solflare, and other Solana wallets.
+- **Credit System**: Buy credits to access AI-generated art features.
+- **Dark Mode**: Toggle between light and dark themes for a personalized experience.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## 🛠️ Technologies
+
+- **Frontend**: Vue 3 + TypeScript + Vite
+- **Blockchain**: Solana Web3.js + Metaplex JS
+- **AI Integration**: Stable Diffusion API
+- **Backend**: Firebase (for user management and credit tracking)
+- **Testing**: Vitest (unit tests) and Cypress (end-to-end tests)
+
+---
+
+## 🚀 Roadmap
+
+| Feature                   | Status         |
+| :------------------------ | :------------- |
+| Drawing tools & canvas    | ✅ Completed   |
+| AI-generated pixel art    | ✅ Completed   |
+| NFT minting on Solana     | 🚧 In progress |
+| Token launch via pump.fun | 🚧 In progress |
+
+---
+
+## 🖥️ Getting Started
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/Victor-Evogor/dotmint.git
+cd dotmint
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm install
 ```
+
+### 3. Start the development server
+
+```bash
+npm run dev
+```
+
+Open your browser and visit [http://localhost:5173](http://localhost:5173).
+
+---
+
+## 📦 Build for production
+
+```bash
+npm run build
+```
+
+Preview the production build:
+
+```bash
+npm run preview
+```
+
+---
+
+## 🧪 Testing
+
+- **Unit tests** (Vitest)
+
+```bash
+npm run test:unit
+```
+
+- **End-to-End tests** (Cypress)
+
+```bash
+npm run test:e2e:dev
+```
+
+Or test against production:
+
+```bash
+npm run build
+npm run test:e2e
+```
+
+---
+
+## 🔗 Useful Links
+
+- [Solana Web3.js](https://solana-labs.github.io/solana-web3.js/)
+- [Stable Diffusion API](https://stability.ai/)
+- [pump.fun](https://pump.fun/)
+- [Firebase Documentation](https://firebase.google.com/docs)
+
+---
+
+## 📄 License
+
+MIT License — free for personal and commercial use. Attribution is appreciated! 🚀

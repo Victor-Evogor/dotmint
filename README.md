@@ -1,6 +1,6 @@
 # DotMint 🎨
 
-**DotMint** is a creative platform that allows users to design **30x30 pixelated artwork** called dotmints. Users can draw manually on a web-based canvas using powerful tools, and mint their creations as NFTs on the Solana blockchain.
+**DotMint** is a creative platform that allows users to design **30x30 pixelated artwork** called dotmints. Users can draw manually on a web-based canvas using powerful tools, and mint their creations as tokens on the Solana blockchain.
 
 [🔗 GitHub Repo](https://github.com/Victor-Evogor/dotmint.git)
 
